@@ -1,0 +1,7 @@
+# Exercice 09 - Course hippique
+
+On désire gérer les participations des divers chevaux et jockeys aux courses hippiques, notamment connaître les participants d’une course et leur classement. Une course se déroule toujours sur le même champ de course et appartient toujours à la même catégorie (par exemple, trot attelé, trot monté, obstacle, etc.). On souhaite également connaître les catégories de course qu’un champ de course peut accueillir.
+
+Les informations suivantes doivent être gérées : la désignation de la course (comme le prix d’Amérique), le nom du champ de course, le nombre de places dans les tribunes, la date de la course (qui est variable), et la dotation de la course en euros (également variable). Il est nécessaire de connaître le nom des chevaux, le nom et le prénom du propriétaire (on supposera qu’il n’y en a qu’un et qu’on ne gérera pas l’historique), le sexe du cheval, le nom et le prénom des jockeys, la date de naissance de chaque cheval, et le numéro du dossard du jockey et du cheval pour la course.
+
+En outre, on souhaite gérer les liens de parenté directs entre les chevaux. Une même course peut avoir lieu plusieurs fois dans la même saison sur le même champ de course, et les dotations ne sont pas toujours les mêmes. Par exemple, le trot monté d’Auteuil se déroule en mars avec une dotation de 5M€, en juillet avec une dotation de 3M€, et en décembre avec une dotation de 4M€.
