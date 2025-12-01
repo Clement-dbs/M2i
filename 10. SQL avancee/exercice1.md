@@ -118,7 +118,7 @@ Le service Produit souhaite afficher une liste publique des morceaux, contenant 
 Créer une vue adaptée à ce besoin, puis l’utiliser pour lister l’ensemble du catalogue de manière ordonnée.
 
 ---
-
+```sql
 CREATE OR REPLACE VIEW v_music_results AS
 SELECT
     t.*,
@@ -130,7 +130,7 @@ LEFT JOIN artists AS a
     -- Utilisation : lire les résultats comme si c'était une table "flattened"
 SELECT *
 FROM v_music_results
-
+```
 
 ## 2. Utilisateurs Premium français
 
@@ -142,7 +142,7 @@ L’équipe marketing souhaite travailler spécifiquement sur les utilisateurs :
 Créer une vue filtrée permettant d’identifier ces utilisateurs, puis l’utiliser pour obtenir une liste ordonnée.
 
 ---
-
+```sql
 CREATE OR REPLACE VIEW v_users_premium_france AS
 SELECT
     u.*
@@ -152,6 +152,7 @@ WHERE u.subscription = 'Premium'
 
 SELECT *
 FROM v_users_premium_france
+```
 
 ## 3. Historique détaillé des écoutes
 
@@ -166,7 +167,7 @@ L’équipe Data souhaite une vue qui rassemble toutes les informations utiles s
 Créer cette vue consolidée en utilisant les relations entre les tables, puis l’interroger pour extraire uniquement les écoutes réalisées par des utilisateurs français.
 
 ---
-
+```sql
 CREATE OR REPLACE VIEW v_listening AS
 SELECT
  	u.username AS user_name,
@@ -185,6 +186,7 @@ LEFT JOIN artists AS a
 WHERE u.country = 'France'
 
 SELECT * FROM v_listening
+```
 
 ## 4. Statistiques d’écoute par artiste
 
@@ -199,7 +201,7 @@ Pour chaque artiste, calculer :
 Créer cette vue matérialisée, puis l’utiliser pour identifier les artistes les plus écoutés selon différents critères (par exemple ceux qui ont un nombre d’écoutes élevé, ou un volume total de lecture important).
 
 ---
-
+```sql
 CREATE MATERIALIZED VIEW mv_artist_most_listen AS
 SELECT
     a.artist_id,
@@ -215,9 +217,9 @@ GROUP BY  a.artist_id, a.name
 
 SELECT * 
 FROM mv_artist_most_listen
+```
 
-
-## 5. Analyse par pays d’artiste
+## 5. Analyse par pays d’artiste 🔴
 
 À partir des statistiques d’écoute par artiste, analyser maintenant la performance :
 
@@ -233,7 +235,7 @@ et ordonner ce classement.
 
 ---
 
-## 6. Optimisation et index
+## 6. Optimisation et index 🔴
 
 Certaines colonnes de ces vues matérialisées seront utilisées très souvent dans des filtres et tris (par exemple le total de secondes ou la moyenne par écoute).
 

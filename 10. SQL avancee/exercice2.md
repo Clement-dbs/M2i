@@ -117,6 +117,22 @@ L’équipe métier souhaite disposer d’une vue qui centralise, pour chaque co
 
 ---
 
+```
+CREATE OR REPLACE VIEW v_commande AS
+SELECT
+    c.full_name,
+    SUM(oi.quantity * oi.unit_price) AS total_amount
+FROM customers AS c
+JOIN orders AS o
+    ON c.customer_id = o.customer_id
+JOIN order_items AS oi
+    ON o.order_id = oi.order_id
+GROUP BY c.full_name;
+
+SELECT * FROM v_commande
+
+```
+
 ### 2. Statistiques de ventes par jour
 
 Le service de reporting a besoin d’un **tableau de bord quotidien** indiquant, pour chaque jour :
