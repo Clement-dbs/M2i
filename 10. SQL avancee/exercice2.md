@@ -148,6 +148,22 @@ Pour optimiser les performances, ce tableau de bord doit être construit à part
 
 ---
 
+```
+CREATE MATERIALIZED VIEW v_daily_stats AS
+SELECT
+    o.order_date,
+    COUNT(o.order_id),
+    SUM(oi.quantity * oi.unit_price) AS totale
+FROM orders AS o
+JOIN order_items AS oi
+    ON o.order_id = oi.order_id
+WHERE o.status = 'COMPLETED'
+GROUP BY o.order_date;
+
+
+SELECT * FROM v_daily_stats
+```
+
 ### 3. Clients les plus rentables
 
 La direction souhaite identifier les clients les plus intéressants commercialement, en se basant uniquement sur les **commandes complétées** :
@@ -162,7 +178,22 @@ Pour chaque client, on veut connaître :
 3. Exploiter cette vue pour afficher uniquement les clients ayant passé **au moins deux** commandes complétées.
 
 ---
+```
+CREATE MATERIALIZED VIEW v_daily_stats AS
+SELECT
+    c.full_name,
+    COUNT(o.order_id) as number_order,
+    SUM(oi.quantity * oi.unit_price) AS totale
+FROM customers AS c
+JOIN orders AS o
+	ON c.customer_id = o.customer_id
+JOIN order_items AS oi
+    ON o.order_id = oi.order_id
+WHERE o.status = 'COMPLETED'
+GROUP BY c.full_name
+ORDER BY number_order DESC
 
+```
 ### 4. Optimisation via index
 
 Certaines requêtes sont particulièrement fréquentes :

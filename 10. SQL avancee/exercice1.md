@@ -124,7 +124,7 @@ SELECT
     t.*,
     a.name AS artist_name
 FROM tracks AS t
-LEFT JOIN artists AS a
+JOIN artists AS a
     ON a.artist_id = t.artist_id;
 
     -- Utilisation : lire les résultats comme si c'était une table "flattened"
