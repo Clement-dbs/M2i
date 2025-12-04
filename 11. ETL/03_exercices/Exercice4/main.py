@@ -23,6 +23,16 @@ countries = requests.get('https://restcountries.com/v3.1/region/europe?fields=na
 
 if countries.status_code == 200:
     result = countries.json()
+    data = []
+    for pays in result:
+        data.append({
+            'nom' : pays.get('name').get('common'),
+            'capitale' : pays.get('capital')[0],
+            'population' : pays.get('population',0),
+            'superficiele' : pays.get('area')
+
+        })
+    print(data)
     # 2. Créer un DataFrame avec : nom, capitale, population, superficie
     df = pd.DataFrame(result)
     df = df[['name', 'capital','area','population']]
