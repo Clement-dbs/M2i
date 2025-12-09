@@ -1,0 +1,32 @@
+2025-12-08 11:18:28 - ETL_API - INFO - ==================================================
+2025-12-08 11:18:28 - ETL_API - INFO - DÉBUT DU PIPELINE ETL
+2025-12-08 11:18:28 - ETL_API - INFO - ==================================================
+2025-12-08 11:18:28 - ETL_API - INFO - 
+[1/3] EXTRACTION
+2025-12-08 11:18:28 - ETL_API - INFO - Extraction de https://jsonplaceholder.typicode.com/posts
+2025-12-08 11:18:28 - ETL_API - INFO - Données extraites
+2025-12-08 11:18:28 - ETL_API - INFO - 
+[2/3] TRANSFORMATION
+2025-12-08 11:18:28 - ETL_API - INFO - Nettoyage des données
+2025-12-08 11:18:28 - ETL_API - INFO -   - 0 doublons supprimés
+2025-12-08 11:18:28 - ETL_API - INFO - Nettoyage terminé: 20 lignes
+2025-12-08 11:18:28 - ETL_API - INFO - Validation réussie
+2025-12-08 11:18:28 - ETL_API - INFO - Enrichissement des données
+2025-12-08 11:18:28 - ETL_API - INFO - Enrichissement terminé
+2025-12-08 11:18:28 - ETL_API - INFO - 
+[3/3] CHARGEMENT
+2025-12-08 11:18:28 - ETL_API - INFO - Chargement vers data/output\posts_api.xlsx
+2025-12-08 11:18:29 - ETL_API - INFO - 20 lignes chargées
+2025-12-08 11:18:29 - ETL_API - INFO - 
+==================================================
+2025-12-08 11:18:29 - ETL_API - INFO - PIPELINE TERMINÉ AVEC SUCCÈS
+2025-12-08 11:18:29 - ETL_API - INFO - ==================================================
+2025-12-08 11:21:08 - ETL_API - INFO - ==================================================
+2025-12-08 11:21:08 - ETL_API - INFO - DÉBUT DU PIPELINE ETL
+2025-12-08 11:21:08 - ETL_API - INFO - ==================================================
+2025-12-08 11:21:08 - ETL_API - INFO - 
+[1/3] EXTRACTION
+2025-12-08 11:21:08 - ETL_API - INFO - Extraction de https://jsouyfuyfnplaceholder.typicode.com/posts
+2025-12-08 11:21:08 - ETL_API - ERROR - Erreur extraction API: HTTPSConnectionPool(host='jsouyfuyfnplaceholder.typicode.com', port=443): Max retries exceeded with url: /posts?_limit=20 (Caused by NameResolutionError("<urllib3.connection.HTTPSConnection object at 0x000001CC13539BE0>: Failed to resolve 'jsouyfuyfnplaceholder.typicode.com' ([Errno 11001] getaddrinfo failed)"))
+2025-12-08 11:21:08 - ETL_API - ERROR - 
+PIPELINE ÉCHOUÉ: HTTPSConnectionPool(host='jsouyfuyfnplaceholder.typicode.com', port=443): Max retries exceeded with url: /posts?_limit=20 (Caused by NameResolutionError("<urllib3.connection.HTTPSConnection object at 0x000001CC13539BE0>: Failed to resolve 'jsouyfuyfnplaceholder.typicode.com' ([Errno 11001] getaddrinfo failed)"))
