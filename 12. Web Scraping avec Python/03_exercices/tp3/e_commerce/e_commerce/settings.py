@@ -1,4 +1,4 @@
-# Scrapy settings for exercice04 project
+# Scrapy settings for e_commerce project
 #
 # For simplicity, this file contains only settings considered important or
 # commonly used. You can find more settings consulting the documentation:
@@ -7,16 +7,16 @@
 #     https://docs.scrapy.org/en/latest/topics/downloader-middleware.html
 #     https://docs.scrapy.org/en/latest/topics/spider-middleware.html
 
-BOT_NAME = "exercice04"
+BOT_NAME = "e_commerce"
 
-SPIDER_MODULES = ["exercice04.spiders"]
-NEWSPIDER_MODULE = "exercice04.spiders"
+SPIDER_MODULES = ["e_commerce.spiders"]
+NEWSPIDER_MODULE = "e_commerce.spiders"
 
 ADDONS = {}
 
 
 # Crawl responsibly by identifying yourself (and your website) on the user-agent
-#USER_AGENT = "exercice04 (+http://www.yourdomain.com)"
+#USER_AGENT = "e_commerce (+http://www.yourdomain.com)"
 
 # Obey robots.txt rules
 ROBOTSTXT_OBEY = True
@@ -41,13 +41,13 @@ DOWNLOAD_DELAY = 1
 # Enable or disable spider middlewares
 # See https://docs.scrapy.org/en/latest/topics/spider-middleware.html
 #SPIDER_MIDDLEWARES = {
-#    "exercice04.middlewares.Exercice04SpiderMiddleware": 543,
+#    "e_commerce.middlewares.ECommerceSpiderMiddleware": 543,
 #}
 
 # Enable or disable downloader middlewares
 # See https://docs.scrapy.org/en/latest/topics/downloader-middleware.html
 #DOWNLOADER_MIDDLEWARES = {
-#    "exercice04.middlewares.Exercice04DownloaderMiddleware": 543,
+#    "e_commerce.middlewares.ECommerceDownloaderMiddleware": 543,
 #}
 
 # Enable or disable extensions
@@ -59,7 +59,7 @@ DOWNLOAD_DELAY = 1
 # Configure item pipelines
 # See https://docs.scrapy.org/en/latest/topics/item-pipeline.html
 #ITEM_PIPELINES = {
-#    "exercice04.pipelines.Exercice04Pipeline": 300,
+#    "e_commerce.pipelines.ECommercePipeline": 300,
 #}
 
 # Enable and configure the AutoThrottle extension (disabled by default)
@@ -85,4 +85,3 @@ DOWNLOAD_DELAY = 1
 
 # Set settings whose default value is deprecated to a future-proof value
 FEED_EXPORT_ENCODING = "utf-8"
-#FEED_EXPORT_FIELDS = ["title", "price", "rating", "availability"]
