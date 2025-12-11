@@ -27,30 +27,35 @@ list_quotes = []
 for div in divs:
     text = div.find("span", class_="text").get_text()
     author = div.find("small", class_="author").get_text()
-    tags = div.find_all("a", class_="tag")
-    for tag in tags:
-        value = div.find("a", class_="tag").get_text()
-        print(value)
-    list_quotes.append([text,author,tags])
-    print(text)
-    print(author)
-    print(tags)
+    tags = [tag.text for tag in div.find_all("a", class_="tag")]
+    
+    list_quotes.append({
+        'text': text,
+        'author': author,
+        'tags': tags
+    })
 
 
-# # 6. Compter le nombre total de citations sur la page
-divs = soup.find_all("div", class_="quote")
 
-list_quotes = []
-for div in divs:
-    text = div.find("span", class_="text").get_text()
-    author = div.find("small", class_="author").get_text()
-    tags = div.find("a", class_="tag")
-    list_quotes.append([text,author,tags])
-    print(text)
-    print(author)
-    print(tags)
 
-print(f"Nombre total de citations sur la page : {len(list_quotes)}")
+for quote in list_quotes:
+    print(quote)
+
+
+# # # 6. Compter le nombre total de citations sur la page
+# divs = soup.find_all("div", class_="quote")
+
+# list_quotes = []
+# for div in divs:
+#     text = div.find("span", class_="text").get_text()
+#     author = div.find("small", class_="author").get_text()
+#     tags = div.find("a", class_="tag")
+#     list_quotes.append([text,author,tags])
+#     print(text)
+#     print(author)
+#     print(tags)
+
+# print(f"Nombre total de citations sur la page : {len(list_quotes)}")
  
 
 
