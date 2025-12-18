@@ -1,0 +1,5 @@
+use("oneTo")
+db.createCollection("users")
+db.createCollection("address")
+db.users.insertOne({name:"Clement", age:45})
+db.address.insertOne({street: "13 rue des Lilas", number:13, city:"London", user_id:ObjectId('6941670921940e0dfdd18c64')})

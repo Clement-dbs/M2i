@@ -1,6 +1,6 @@
 import scrapy
 from e_commerce.items import CategoriesItem
-from e_commerce.spiders import CategoriesSpider
+from e_commerce.spiders.books import BooksSpider
 
 
 

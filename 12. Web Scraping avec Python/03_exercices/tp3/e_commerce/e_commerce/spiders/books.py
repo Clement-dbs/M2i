@@ -1,18 +1,18 @@
 import scrapy
-from e_commerce.items import CategoriesItem
+from e_commerce.items import BooksItem
 
-class CategoriesSpider(scrapy.Spider):
+class BooksSpider(scrapy.Spider):
     name = "categories"
     allowed_domains = ["books.toscrape.com"]
     start_urls = ["http://books.toscrape.com"]
 
     def parse(self, response):
-        categories = response.css(".side_categories ul li ul li a")
+        categories = response.css("product_pod")
 
         for category in categories:
-            item = CategoriesItem()
-            item['text'] = category.css("::text").get().strip()
-            item['url'] = category.css("::attr(href)").get()
+            item = BooksItem()
+            item['text'] = category.css("h3 a::attr(title)").get()
+        
 
             yield item
 
