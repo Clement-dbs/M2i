@@ -1,14 +1,8 @@
-"""
-Configuration centralisée du projet.
-Utilise des variables d'environnement avec valeurs par défaut.
-"""
-
 import os
 from dataclasses import dataclass
-from dotenv import load_dotenv
+# from dotenv import load_dotenv
 
-load_dotenv()
-
+# load_dotenv()
 
 @dataclass
 class MinIOConfig:
@@ -16,9 +10,9 @@ class MinIOConfig:
     access_key: str = os.getenv("S3_ACCESS_KEY", "minioadmin")
     secret_key: str = os.getenv("S3_SECRET_KEY", "minioadmin123")
     secure: bool = os.getenv("S3_SECURE", "false").lower() == "true"
-    bucket_images:str = "author-images"
-    bucket_exports:str = "quotes-exports"
-    bucket_backups:str = "quotes-backups"
+    # bucket_images:str = "author-images"
+    # bucket_exports:str = "quotes-exports"
+    # bucket_backups:str = "quotes-backups"
 
 
 @dataclass

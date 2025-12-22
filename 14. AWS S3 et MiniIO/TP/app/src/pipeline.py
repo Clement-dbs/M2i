@@ -6,13 +6,13 @@ import pandas as pd
 from tqdm import tqdm
 import structlog
 
-from src import QuotesScraper, Quote, Author
-from src.storage import MinIOStorage, MongoDBStorage
+from scraper import Scraper, Categories, Products
+from storage import MinIOStorage, MongoDBStorage
 
 logger = structlog.get_logger()
 
 
-class QuotesPipeline:
+class AllinonePipeline:
     """
     Pipeline ETL pour les citations.
     
@@ -23,14 +23,18 @@ class QuotesPipeline:
     """
     
     def __init__(self):
-        self.scraper = QuotesScraper()
-        self.minio = MinIOStorage()
-        self.mongodb = MongoDBStorage()
-        self.stats = {
-            "quotes_scraped": 0,
-            "authors_scraped": 0,
-            "errors": []
-        }
+        self.scraper = Scraper()
+        # self.minio = MinIOStorage()
+        # self.mongodb = MongoDBStorage()
+        # self.stats = {
+        #     "quotes_scraped": 0,
+        #     "authors_scraped": 0,
+        #     "errors": []
+        # }
+    
+    def fetch_data(self):
+        """Extrait les données via le scraper."""
+        return self.scraper._fetch()
     
     def process_quote(self, quote: Quote) -> Optional[dict]:
         """Traite et stocke une citation."""
@@ -235,7 +239,7 @@ def main():
     
     args = parser.parse_args()
     
-    pipeline = QuotesPipeline()
+    pipeline = AllinonePipeline()
     
     try:
         # Exécuter le scraping
@@ -289,4 +293,6 @@ def main():
 
 
 if __name__ == "__main__":
-    main()
+    # main()
+    pipeline = AllinonePipeline()
+    pipeline.fetch_data()

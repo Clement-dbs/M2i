@@ -5,11 +5,11 @@ from urllib.parse import urljoin
 from dataclasses import dataclass, field
 import requests
 from bs4 import BeautifulSoup
-from fake-UserAgent import UserAgent
-from tenacity import retry, stop_after_attempt, wait_exponential
+# from fake-UserAgent import UserAgent
+# from tenacity import retry, stop_after_attempt, wait_exponential
 import structlog
 
-from config.settings import scraper_config
+from config.settings import ScraperConfig
 
 logger = structlog.get_logger()
 
@@ -56,8 +56,8 @@ class Scraper:
         self.base_url = scraper_config.base_url
         self.delay = scraper_config.delay
         self.session = requests.Session()
-        self.ua = UserAgent()
-        self._setup_session()
+        # self.ua = UserAgent()
+        # self._setup_session()
         
     
     def _setup_session(self) -> None:
@@ -69,11 +69,12 @@ class Scraper:
             "Connection": "keep-alive"
         })
     
-    @retry(
-        stop=stop_after_attempt(3),
-        wait=wait_exponential(multiplier=1, min=2, max=10)
-    )
-    def _fetch(self, url: str) -> Optional[BeautifulSoup]:
+    # @retry(
+    #     stop=stop_after_attempt(3),
+    #     wait=wait_exponential(multiplier=1, min=2, max=10)
+    # )
+
+    def _fetch(self) -> Optional[BeautifulSoup]:
         """
         Récupère et parse une page.
         
@@ -84,8 +85,9 @@ class Scraper:
             BeautifulSoup ou None
         """
         try:
-            logger.debug("fetching", url=url)
-            response = self.session.get(url, timeout=scraper_config.timeout)
+            # logger.debug("fetching", url=url)
+            # soup = BeautifulSoup(self.base_url, "lxml")
+            response = self.session.get(self.base_url, timeout=scraper_config.timeout)
             response.raise_for_status()
             
             # Politesse
@@ -94,7 +96,7 @@ class Scraper:
             return BeautifulSoup(response.content, "lxml")
             
         except requests.RequestException as e:
-            logger.error("fetch_failed", url=url, error=str(e))
+            #logger.error("fetch_failed", url=url, error=str(e))
             raise
     
     def _clean_text(self, text: str) -> str:
