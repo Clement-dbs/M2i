@@ -27,108 +27,108 @@ studentsSchema = StructType([
 ### Exercice 1.1 - Exploration
 
 # # TODO 1: Afficher le schéma
-# print(studentsSchema)
+print(studentsSchema)
 
-# # TODO 2: Compter le nombre d'étudiants
-# count_student = df.count()
-# print(f"Nombre d'étudiants : {count_student}")
+# TODO 2: Compter le nombre d'étudiants
+count_student = df.count()
+print(f"Nombre d'étudiants : {count_student}")
 
-# # TODO 3: Afficher les 10 premières lignes
-# df.show(10)
+# TODO 3: Afficher les 10 premières lignes
+df.show(10)
 
-# # TODO 4: Afficher les statistiques descriptives (describe)
-# df.describe().show()
+# TODO 4: Afficher les statistiques descriptives (describe)
+df.describe().show()
 
-# ### Exercice 1.2 - Sélections et Filtres
+### Exercice 1.2 - Sélections et Filtres
 
-# # TODO 1: Sélectionner uniquement gender et les 3 scores
+# TODO 1: Sélectionner uniquement gender et les 3 scores
 
-# df.select(
-#     ("gender"),
-#     ("math score"),
-#     ("reading score"),
-#     ("writing score")
-# )
+df.select(
+    ("gender"),
+    ("math score"),
+    ("reading score"),
+    ("writing score")
+)
 
-# # TODO 2: Filtrer les étudiants qui ont > 90 en maths
+# TODO 2: Filtrer les étudiants qui ont > 90 en maths
 
-# students = df.filter(col("math score") > 90)
-# students.show()
+students = df.filter(col("math score") > 90)
+students.show()
 
-# # TODO 3: Filtrer les étudiants avec lunch = "free/reduced"
+# TODO 3: Filtrer les étudiants avec lunch = "free/reduced"
 
-# students = df.filter(col("lunch") == "free/reduced")
-# students.show()
+students = df.filter(col("lunch") == "free/reduced")
+students.show()
 
-# # TODO 4: Compter combien d'étudiants ont complété le prep course
+# TODO 4: Compter combien d'étudiants ont complété le prep course
 
-# students = df.filter(col("test preparation course") == "completed").count()
-# print(f"Nombre d'étudiants qui ont complété le 'prep course' {students}")
+students = df.filter(col("test preparation course") == "completed").count()
+print(f"Nombre d'étudiants qui ont complété le 'prep course' {students}")
 
-# # TODO 5: Trouver les 10 meilleurs scores en lecture
+# TODO 5: Trouver les 10 meilleurs scores en lecture
 
-# df.orderBy(desc("reading score")).show(10)
+df.orderBy(desc("reading score")).show(10)
 
-### Exercice 1.3 - Agrégations
-# TODO 1: Calculer la moyenne de chaque matière
+## Exercice 1.3 - Agrégations
+#TODO 1: Calculer la moyenne de chaque matière
 
-# df.select(
-#     avg("math score"),
-#     avg("reading score"),
-#     avg("writing score")
-# ).show()
+df.select(
+    avg("math score"),
+    avg("reading score"),
+    avg("writing score")
+).show()
 
-# # TODO 2: Compter le nombre d'étudiants par genre
+# TODO 2: Compter le nombre d'étudiants par genre
 
-# df.groupBy("gender") \
-# .agg(
-#     count("gender"),
-# ).show()
+df.groupBy("gender") \
+.agg(
+    count("gender"),
+).show()
 
-# # TODO 3: Calculer la moyenne des scores par genre
+# TODO 3: Calculer la moyenne des scores par genre
 
-# df.groupBy("gender") \
-#   .agg(
-#       avg("math score"),
-#       avg("reading score"),
-#       avg("writing score")
-#   ).show()
+df.groupBy("gender") \
+  .agg(
+      avg("math score"),
+      avg("reading score"),
+      avg("writing score")
+  ).show()
 
-# # TODO 4: Trouver le score max et min en maths
-# df.select(
-#     min("math score"),
-#     max("math score")
-# ).show()
+# TODO 4: Trouver le score max et min en maths
+df.select(
+    min("math score"),
+    max("math score")
+).show()
 
-# # TODO 5: Calculer la moyenne par groupe ethnique (race/ethnicity)
+# TODO 5: Calculer la moyenne par groupe ethnique (race/ethnicity)
 
-# df.groupBy("race/ethnicity") \
-#   .agg(
-#       avg("math score"),
-#       avg("reading score"),
-#       avg("writing score")
-#   ).show()
+df.groupBy("race/ethnicity") \
+  .agg(
+      avg("math score"),
+      avg("reading score"),
+      avg("writing score")
+  ).show()
 
 
-## Niveau 2 : Jointures
+# Niveau 2 : Jointures
 
-# grades_ref = spark.createDataFrame([
-#     ("A", 90, 100),
-#     ("B", 80, 89),
-#     ("C", 70, 79),
-#     ("D", 60, 69),
-#     ("F", 0, 59)
-# ], ["grade", "min_score", "max_score"])
+grades_ref = spark.createDataFrame([
+    ("A", 90, 100),
+    ("B", 80, 89),
+    ("C", 70, 79),
+    ("D", 60, 69),
+    ("F", 0, 59)
+], ["grade", "min_score", "max_score"])
 
-# grades_ref.show()
+grades_ref.show()
 
-# departments = spark.createDataFrame([
-#     ("group A", "Sciences"),
-#     ("group B", "Arts"),
-#     ("group C", "Commerce"),
-#     ("group D", "Ingénierie"),
-#     ("group E", "Médecine")
-# ], ["ethnicity", "department"])
+departments = spark.createDataFrame([
+    ("group A", "Sciences"),
+    ("group B", "Arts"),
+    ("group C", "Commerce"),
+    ("group D", "Ingénierie"),
+    ("group E", "Médecine")
+], ["ethnicity", "department"])
 
 # departments.show()
 
@@ -167,43 +167,49 @@ studentsSchema = StructType([
 
 
 ### Exercice 2.2 - Transformation et jointure
-# from pyspark.sql.functions import monotonically_increasing_id
-# students_with_id = df.withColumn("student_id", monotonically_increasing_id())
+from pyspark.sql.functions import monotonically_increasing_id
+students_with_id = df.withColumn("student_id", monotonically_increasing_id())
 
-# students_with_avg = students_with_id.withColumn(
-#     "score_moyen",
-#     (col("math score") + col("reading score") + col("writing score")) / 3
-# )
+students_with_avg = students_with_id.withColumn(
+    "score_moyen",
+    (col("math score") + col("reading score") + col("writing score")) / 3
+)
 
-# students = students_with_avg.select("student_id", "score_moyen")
+students = students_with_avg.select("student_id", "score_moyen")
 
-# students.show(10)
-
-
-# students_with_grade = students.join(
-#     grades_ref,
-#     students.score_moyen.between(grades_ref.min_score, grades_ref.max_score),
-#     "inner"
-# )
-
-# students_with_grade.show(10)
+students.show(10)
 
 
-## Exercice 2.3 - Analyse croisée
+students_with_grade = students.join(
+    grades_ref,
+    students.score_moyen.between(grades_ref.min_score, grades_ref.max_score),
+    "inner"
+)
 
-# students_departements = df.join(
-#     departments,
-#     df["race/ethnicity"] == departments["ethnicity"],
-#     "inner"
-# )
+students_with_grade.show(10)
 
-# # TODO 1: Joindre students avec departments
-# # Calculer la moyenne par département ET par genre
-# students_departements.groupBy("department", "gender").agg(
-#         avg("math score"),
-#         avg("reading score"),
-#         avg("writing score")
-#     ).orderBy("department", "gender").show()
+
+# Exercice 2.3 - Analyse croisée
+
+students_departements = df.join(
+    departments,
+    df["race/ethnicity"] == departments["ethnicity"],
+    "inner"
+)
+
+# TODO 1: Joindre students avec departments
+# Calculer la moyenne par département ET par genre
+print("ICI")
+new_df = students_departements.withColumn(
+    "score_moyen",
+    (col("math score") + col("reading score") + col("writing score")) / 3
+)
+new_df.show()
+print("ICI 2")
+
+new_df.groupBy("department", "gender").agg(
+        avg("score_moyen")
+    ).orderBy("department", "gender").show()
 
 # # TODO 2: Identifier le département avec les meilleurs résultats
 # students_departements.orderBy(col("math score").desc(), col("reading score").desc(), col("writing score").desc()).show
